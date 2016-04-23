@@ -97,7 +97,9 @@ angular.module('ui.tinymce', [])
             ed.on('blur', function() {
               element[0].blur();
               ngModel.$setTouched();
-              scope.$digest();
+              if (!$rootScope.$$phase) {
+                scope.$digest();
+              }
             });
 
             ed.on('remove', function() {
